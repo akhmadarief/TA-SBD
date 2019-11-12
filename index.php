@@ -24,7 +24,7 @@
 
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
-    
+
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
@@ -53,12 +53,21 @@
                     <h2 class="title">Form Registrasi Seminar</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" action="insert.php" name="reg" id="reg">
                         <div class="form-row">
                             <div class="name">Nama</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="nama" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row m-b-55">
+                            <div class="name">No. Identitas</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="no_id" required>
+                                    <label class="label--desc">KTP/KTM/SIM/Passport</label>
                                 </div>
                             </div>
                         </div>
@@ -144,9 +153,9 @@
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="subject">
                                             <option disabled="disabled" selected="selected">Pilih Seminar</option>
-                                            <option>Subject 1</option>
-                                            <option>Subject 2</option>
-                                            <option>Subject 3</option>
+                                            <option value='1'>Seminar A</option>
+                                            <option value='2'>Seminar B</option>
+                                            <option value='3'>Seminar C</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -154,7 +163,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Tipe Registrasi</div>
+                            <div class="name">Kategori</div>
                             <div class="value">
                                 <div class="input-group">
                                     <label class="radio-container m-r-55">Umum - Rp.50000
