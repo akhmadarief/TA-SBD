@@ -58,7 +58,7 @@
                             <div class="name">Nama</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="nama" required>
+                                    <input class="input--style-5" type="text" name="nama" maxlength="50" oninput="this.value = this.value.replace(/[^a-z A-Z ']/g, '');" required>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                             <div class="name">No. Identitas</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="no_id" required>
+                                    <input class="input--style-5" type="text" name="no_id" maxlength="20" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                                     <label class="label--desc">KTP/KTM/SIM/Passport</label>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                             <div class="name">Institusi</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="inst" required>
+                                    <input class="input--style-5" type="text" name="inst" maxlength="50" required>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="email" name="email" required>
+                                    <input class="input--style-5" type="email" name="email" maxlength="50" required>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             <div class="name">Nomor HP</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="hp" required>
+                                    <input class="input--style-5" type="text" name="hp" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                                 </div>
                             </div>
                         </div>
