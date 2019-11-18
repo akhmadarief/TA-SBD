@@ -1,12 +1,10 @@
 <?php
+    include "conf.php";
 
-include("conf.php");
-
-session_start();
-if($_SESSION['status']!="login"){
-	header("location: login.php");
-}
-
+    session_start();
+    if($_SESSION['status']!="login"){
+        header("location: login.php");
+    }
 ?>
 
 <!DOCTYPE html>
