@@ -1,21 +1,20 @@
 <?php
+	session_start();
+	include("conf.php");
 
-session_start();
-include("conf.php");
+	$admin = $conn->prepare("SELECT * FROM admin WHERE username=? AND password=?");
+	$admin->bind_param("ss", $_POST['username'], md5($_POST['password']));
+	$admin->execute();
+	$result = $admin->get_result();
+	$row = $result->fetch_row();
 
-$username = mysqli_real_escape_string($conn, $_POST['username']);
-$password = mysqli_real_escape_string($conn, md5($_POST['password']));
+	if ($row > 0){
+		$_SESSION['username'] = $username;
+		$_SESSION['status'] = "login";
+		header('location: admin.php');
+	}else{
+		header('location: login.php');
+	}
 
-$query = mysqli_query($conn, "SELECT * FROM admin WHERE username='$username' AND password='$password'");
-$admin = mysqli_num_rows($query);
-
-if ($admin > 0){
-	$_SESSION['username'] = $username;
-	$_SESSION['status'] = "login";
-	header('location: admin.php');
-}else{
-	echo mysqli_error($conn);
-	header('location: login.php');
-}
-
+	$admin->close();
 ?>
