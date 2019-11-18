@@ -1,7 +1,5 @@
 <?php
-
-include("conf.php");
-
+    include "conf.php" ;
 ?>
 
 <!DOCTYPE html>
@@ -126,10 +124,13 @@ include("conf.php");
                                                 <select name="provinsi" id="provinsi">
                                                     <option disabled="disabled" selected="selected">Pilih Provinsi</option>
                                                     <?php
-                                                        $prov = mysqli_query($conn,"SELECT * FROM provinces ORDER BY name ASC");
-                                                        while ($row = mysqli_fetch_assoc($prov)) {
-                                                            echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                                                        $prov = $conn->prepare("SELECT * FROM provinces ORDER BY name ASC");
+                                                        $prov->execute();
+                                                        $result = $prov->get_result();
+                                                        while($row = $result->fetch_assoc()) {
+                                                            echo "<option value='".$row['id']."'>".$row['name']."</option>";
                                                         }
+                                                        $prov->close();
                                                     ?>
                                                 </select>
                                                 <div class="select-dropdown"></div>
@@ -159,10 +160,13 @@ include("conf.php");
                                         <select name="seminar">
                                             <option disabled="disabled" selected="selected">Pilih Seminar</option>
                                             <?php
-                                                $seminar = mysqli_query($conn,"SELECT * FROM seminar ORDER BY nama_seminar ASC");
-                                                while ($row = mysqli_fetch_assoc($seminar)) {
-                                                    echo "<option value='" . $row['id_seminar'] . "'>" . $row['nama_seminar'] . "</option>";
+                                                $seminar = $conn->prepare("SELECT * FROM seminar ORDER BY nama_seminar ASC");
+                                                $seminar->execute();
+                                                $result = $seminar->get_result();
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row['id_seminar']."'>".$row['nama_seminar']."</option>";
                                                 }
+                                                $seminar->close();
                                             ?>
                                         </select>
                                         <div class="select-dropdown"></div>
