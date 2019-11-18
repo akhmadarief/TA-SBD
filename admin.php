@@ -1,3 +1,14 @@
+<?php
+
+include("conf.php");
+
+session_start();
+if($_SESSION['status']!="login"){
+	header("location: login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +21,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Form Registrasi Seminar</title>
+    <title>Data Peserta Seminar</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -22,72 +33,93 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
+    <link href="css/bootstrap.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
-    <link href="css/bootstrap.css" rel="stylesheet" media="all">
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <div class="page-wrapper p-t-45 p-b-50">
-        <div class="wrapper wrapper--w790" style="max-width: 1600px; padding: 0 50px;">
+        <div class="wrapper wrapper--w1550">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Form Registrasi Seminar</h2>
+                    <h2 class="title">Data Peserta Seminar</h2>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card-body-40">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#peserta">Peserta</a></li>
+                        <li><a data-toggle="tab" href="#seminar">Seminar</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="peserta" class="tab-pane fade in active">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Instansi</th>
+                                    <th scope="col">Jenis Kelamin</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">No. HP</th>
+                                    <th scope="col">Kota</th>
+                                    <th scope="col">Seminar</th>
+                                    <th scope="col">Waktu Registrasi</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                    $query = mysqli_query($conn, "SELECT * FROM peserta");
+                                    while ($row = mysqli_fetch_array($query))
+                                    {
+                                        echo "<tr>
+                                        <td>".$row['nama']."</td>
+                                        <td>".$row['id']."</td>
+                                        <td>".$row['inst']."</td>
+                                        <td>".$row['jenis_kelamin']."</td>
+                                        <td>".$row['email']."</td>
+                                        <td>".$row['hp']."</td>
+                                        <td>".$row['id_kota']."</td>
+                                        <td>".$row['id_seminar']."</td>
+                                        <td>".$row['waktu']."</td>
+                                        </tr>";
+                                    }
+                                ?>
+                            </table>
+                        </div>
+                        <div id="seminar" class="tab-pane fade">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama Seminar</th>
+                                        <th scope="col">Waktu</th>
+                                        <th scope="col">Tempat</th>
+                                        <th scope="col">HTM</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    $query = mysqli_query($conn, "SELECT * FROM seminar");
+                                    while ($row = mysqli_fetch_array($query))
+                                    {
+                                        echo "<tr>
+                                        <td>".$row['nama_seminar']."</td>
+                                        <td align='center'>".$row['waktu']."</td>
+                                        <td>".$row['tempat']."</td>
+                                        <td align='right'>Rp ".$row['htm']."</td>
+                                        </tr>";
+                                    }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
-
-    <!-- Main JS-->
-    <script src="js/global.js"></script>
 </body>
 
 </html>

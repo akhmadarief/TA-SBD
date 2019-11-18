@@ -1,3 +1,9 @@
+<?php
+
+include("conf.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +53,7 @@
 
 <body>
     <div class="page-wrapper p-t-45 p-b-50">
-        <div class="wrapper wrapper--w790">
+        <div class="wrapper wrapper--w850">
             <div class="card card-5">
                 <div class="card-heading">
                     <h2 class="title">Form Registrasi Seminar</h2>
@@ -84,11 +90,11 @@
                             <div class="value">
                                 <div class="input-group">
                                     <label class="radio-container m-r-55">Laki-Laki
-                                        <input type="radio" name="gender" required>
+                                        <input type="radio" name="gender" value="Laki-Laki" required>
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="radio-container">Perempuan
-                                        <input type="radio" name="gender">
+                                        <input type="radio" name="gender" value="Perempuan">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -120,8 +126,7 @@
                                                 <select name="provinsi" id="provinsi">
                                                     <option disabled="disabled" selected="selected">Pilih Provinsi</option>
                                                     <?php
-                                                        include("conf.php");
-                                                        $prov = mysqli_query($conn2,"SELECT * FROM provinces ORDER BY name ASC");
+                                                        $prov = mysqli_query($conn,"SELECT * FROM provinces ORDER BY name ASC");
                                                         while ($row = mysqli_fetch_assoc($prov)) {
                                                             echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
                                                         }
@@ -146,34 +151,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row m-b-55">
                             <div class="name">Seminar</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="seminar">
                                             <option disabled="disabled" selected="selected">Pilih Seminar</option>
-                                            <option value='1'>Seminar A</option>
-                                            <option value='2'>Seminar B</option>
-                                            <option value='3'>Seminar C</option>
+                                            <?php
+                                                $seminar = mysqli_query($conn,"SELECT * FROM seminar ORDER BY nama_seminar ASC");
+                                                while ($row = mysqli_fetch_assoc($seminar)) {
+                                                    echo "<option value='" . $row['id_seminar'] . "'>" . $row['nama_seminar'] . "</option>";
+                                                }
+                                            ?>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Kategori</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <label class="radio-container m-r-55">Umum - Rp.50000
-                                        <input type="radio" name="type" required>
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="radio-container">Mahasiswa - Rp.30000
-                                        <input type="radio" name="type">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <label class="label--desc">HTM: </label>
                                 </div>
                             </div>
                         </div>
