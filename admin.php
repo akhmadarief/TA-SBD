@@ -31,7 +31,6 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-    <link href="css/bootstrap.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
 
@@ -69,9 +68,8 @@
                                     </tr>
                                 </thead>
                                 <?php
-                                    $query = mysqli_query($conn, "SELECT * FROM peserta");
-                                    while ($row = mysqli_fetch_array($query))
-                                    {
+                                    $data_peserta = $conn->query("SELECT * FROM peserta");
+                                    while ($row = $data_peserta->fetch_assoc()) {
                                         echo "<tr>
                                         <td>".$row['nama']."</td>
                                         <td>".$row['id']."</td>
@@ -84,6 +82,7 @@
                                         <td>".$row['waktu']."</td>
                                         </tr>";
                                     }
+                                    $data_peserta->close();
                                 ?>
                             </table>
                         </div>
@@ -95,20 +94,24 @@
                                         <th scope="col">Waktu</th>
                                         <th scope="col">Tempat</th>
                                         <th scope="col">HTM</th>
+                                        <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                    $query = mysqli_query($conn, "SELECT * FROM seminar");
-                                    while ($row = mysqli_fetch_array($query))
-                                    {
+                                    $data_seminar = $conn->query("SELECT * FROM seminar");
+                                    while ($row = $data_seminar->fetch_assoc()) {
                                         echo "<tr>
                                         <td>".$row['nama_seminar']."</td>
                                         <td align='center'>".$row['waktu']."</td>
                                         <td>".$row['tempat']."</td>
                                         <td align='right'>Rp ".$row['htm']."</td>
+                                        <td align='center'>
+                                            <a href='hapus_mahasiswa.php?id=".$row['id_seminar']."' class='btn btn-danger'>Hapus</button></a>
+                                        </td>
                                         </tr>";
                                     }
+                                    $data_seminar->close();
                                 ?>
                                 </tbody>
                             </table>
