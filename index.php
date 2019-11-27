@@ -124,13 +124,11 @@
                                                 <select name="provinsi" id="provinsi">
                                                     <option disabled="disabled" selected="selected">Pilih Provinsi</option>
                                                     <?php
-                                                        $prov = $conn->prepare("SELECT * FROM provinces ORDER BY name ASC");
-                                                        $prov->execute();
-                                                        $result = $prov->get_result();
-                                                        while($row = $result->fetch_assoc()) {
+                                                        $data_prov = $conn->query("SELECT * FROM provinces ORDER BY name ASC");
+                                                        while($row = $data_prov->fetch_assoc()) {
                                                             echo "<option value='".$row['id']."'>".$row['name']."</option>";
                                                         }
-                                                        $prov->close();
+                                                        $data_prov->close();
                                                     ?>
                                                 </select>
                                                 <div class="select-dropdown"></div>
@@ -160,13 +158,11 @@
                                         <select name="seminar">
                                             <option disabled="disabled" selected="selected">Pilih Seminar</option>
                                             <?php
-                                                $seminar = $conn->prepare("SELECT * FROM seminar ORDER BY nama_seminar ASC");
-                                                $seminar->execute();
-                                                $result = $seminar->get_result();
-                                                while($row = $result->fetch_assoc()) {
+                                                $data_seminar = $conn->query("SELECT * FROM seminar ORDER BY nama_seminar ASC");
+                                                while($row = $data_seminar->fetch_assoc()) {
                                                     echo "<option value='".$row['id_seminar']."'>".$row['nama_seminar']."</option>";
                                                 }
-                                                $seminar->close();
+                                                $data_seminar->close();
                                             ?>
                                         </select>
                                         <div class="select-dropdown"></div>
