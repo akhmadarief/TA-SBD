@@ -132,7 +132,7 @@
                                                 <label><input type="text" id="cari" class="form-control input-sm" placeholder=""></label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="add_peserta.php" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
+                                                <a href="../" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">

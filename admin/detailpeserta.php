@@ -126,13 +126,17 @@
                             <div class="col-lg-12 p-b-25">
                                 <div class="card">
                                     <div class="bootstrap-data-table-panel">
+                                        <div class="row p-b-10">
+                                            <div class="col-sm-6">
+                                                <label><b>Cari berdasarkan nama atau alamat:</b></label>
+                                                <label><input type="text" id="cari" class="form-control input-sm" placeholder=""></label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="../" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
+                                            </div>
+                                        </div>
                                         <div class="table-responsive">
                                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                                <div class="dataTables_filter p-b-20">
-                                                    <label>Cari berdasarkan nama:
-                                                        <input type="search" class="form-control input-sm" placeholder="">
-                                                    </label>
-                                                </div>
                                                 <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table-export_info">
                                                     <thead>
                                                         <tr role="row">
@@ -148,7 +152,7 @@
                                                             <th class="text-center">Opsi</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="tampil">
                                                         <?php
                                                             $no = 1;
                                                             $detail_peserta = $conn->query("SELECT peserta.*, regencies.name AS kota, provinces.name AS provinsi FROM peserta INNER JOIN regencies ON regencies.id=peserta.id_kota INNER JOIN provinces ON regencies.province_id=provinces.id ORDER BY nama");
@@ -212,6 +216,24 @@
         
         <script src="assets/js/scripts.js"></script>
         <!-- scripit init-->
+
+        <script type="text/javascript">
+            $(document).ready( function() {
+                $('#cari').on('keyup', function() {
+                    $.ajax({
+                    type: 'POST',
+                    url: 'search.php',
+                    data: {
+                        search_detailpeserta: $(this).val()
+                    },
+                    cache: false,
+                    success: function(data) {
+                        $('#tampil').html(data);
+                    }
+                    });
+                });
+            });
+        </script>
     </body>
 
 </html>
