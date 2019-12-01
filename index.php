@@ -122,7 +122,7 @@
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--search">
                                                 <select name="provinsi" id="provinsi">
-                                                    <option disabled="disabled" selected="selected">Pilih Provinsi</option>
+                                                    <option disabled="disabled" selected>Pilih Provinsi</option>
                                                     <?php
                                                         $data_prov = $conn->query("SELECT * FROM provinces ORDER BY name ASC");
                                                         while($row = $data_prov->fetch_assoc()) {
@@ -140,7 +140,7 @@
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--search">
                                                 <select name="kota" id="kota">
-                                                    <option disabled="disabled" selected="selected">Pilih Provinsi terlebih dahulu</option>
+                                                    <option disabled="disabled" selected>Pilih Provinsi terlebih dahulu</option>
                                                 </select>
                                                 <div class="select-dropdown"></div>
                                             </div>
@@ -156,7 +156,7 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="seminar">
-                                            <option disabled="disabled" selected="selected">Pilih Seminar</option>
+                                            <option disabled="disabled" selected>Pilih Seminar</option>
                                             <?php
                                                 $data_seminar = $conn->query("SELECT * FROM seminar ORDER BY nama_seminar ASC");
                                                 while($row = $data_seminar->fetch_assoc()) {

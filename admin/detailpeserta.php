@@ -53,8 +53,8 @@
                         <li class="label">Main</li>
                         <li><a href="../admin"><i class="ti-home"></i> Beranda </a></li>
                         <li><a href="peserta.php"><i class="ti-user"></i> Data Peserta </a></li>
-                        <li class="active"><a><i class="ti-calendar"></i> Data Seminar </a></li>
-                        <li><a href="detailpeserta.php"><i class="ti-id-badge"></i> Detail Peserta </a></li>
+                        <li><a href="seminar.php"><i class="ti-calendar"></i> Data Seminar </a></li>
+                        <li class="active"><a><i class="ti-id-badge"></i> Detail Peserta </a></li>
                         <li><a href="logout.php"><i class="ti-close"></i> Logout </a></li>
                     </ul>
                 </div>
@@ -103,7 +103,7 @@
                         <div class="col-lg-8 p-r-0 title-margin-right">
                             <div class="page-header">
                                 <div class="page-title">
-                                    <h1>Tabel berikut merupakan detail mengenai seminar.</h1>
+                                    <h1>Tabel berikut merupakan data dari peserta seminar.</h1>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                 <div class="page-title">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="../admin">Beranda</a></li>
-                                        <li class="breadcrumb-item active">Data Seminar</li>
+                                        <li class="breadcrumb-item active">Data Peserta</li>
                                     </ol>
                                 </div>
                             </div>
@@ -126,56 +126,61 @@
                             <div class="col-lg-12 p-b-25">
                                 <div class="card">
                                     <div class="bootstrap-data-table-panel">
-                                        <div class="row p-b-10">
-                                            <div class="col-sm-6">
-                                                <label><b>Cari berdasarkan judul atau tempat:</b></label>
-                                                <label><input type="text" id="cari" class="form-control input-sm" placeholder=""></label>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a href="add_seminar.php" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
-                                            </div>
-                                        </div>
                                         <div class="table-responsive">
                                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                                <div class="dataTables_filter p-b-20">
+                                                    <label>Cari berdasarkan nama:
+                                                        <input type="search" class="form-control input-sm" placeholder="">
+                                                    </label>
+                                                </div>
                                                 <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table-export_info">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th class="text-center">ID</th>
-                                                            <th class="text-center">Judul Seminar</th>
-                                                            <th class="text-center">Pelaksanaan</th>
-                                                            <th class="text-center">Tempat</th>
-                                                            <th class="text-center">HTM</th>
+                                                            <th class="text-center">No</th>
+                                                            <th class="text-center">Nama</th>
+                                                            <th class="text-center">No. Identitas</th>
+                                                            <th class="text-center">Jenis Kelamin</th>
+                                                            <th class="text-center">No. HP</th>
+                                                            <th class="text-center">Email</th>
+                                                            <th class="text-center">Alamat</th>
+                                                            <th class="text-center">ID Seminar</th>
+                                                            <th class="text-center">Tanggal Regristrasi</th>
                                                             <th class="text-center">Opsi</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tampil">
+                                                    <tbody>
                                                         <?php
-                                                            $data_seminar = $conn->query("SELECT * FROM seminar");
-                                                            while ($row = $data_seminar->fetch_assoc()) {
+                                                            $no = 0;
+                                                            $data_peserta = $conn->query("SELECT peserta.*, regencies.name AS kota, provinces.name AS provinsi FROM peserta INNER JOIN regencies ON regencies.id=peserta.id_kota INNER JOIN provinces ON regencies.province_id=provinces.id ORDER BY nama");
+                                                            while ($row = $data_peserta->fetch_assoc()) {
+                                                                $no = $no + 1;
                                                                 echo
                                                                 "<tr>
+                                                                    <td class='text-center'>".$no."</td>
+                                                                    <td>".$row['nama']."</td>
+                                                                    <td>".$row['id']."</td>
+                                                                    <td class='text-center'>".$row['jenis_kelamin']."</td>
+                                                                    <td>".$row['hp']."</td>
+                                                                    <td>".$row['email']."</td>
+                                                                    <td>".$row['kota'].", ".$row['provinsi']."</td>
                                                                     <td class='text-center'>".$row['id_seminar']."</td>
-                                                                    <td>".$row['nama_seminar']."</td>
                                                                     <td class='text-center'>".$row['waktu']."</td>
-                                                                    <td>".$row['tempat']."</td>
-                                                                    <td class='text-right'>Rp. ".$row['htm']."</td>
                                                                     <td class='text-center'>
-                                                                        <a class='btn btn-sm btn-info' href='edit_seminar.php?id=".$row['id_seminar']."'>
-                                                                            <span class='ti-pencil'>
-                                                                            </span> Edit
+                                                                        <a class='btn btn-sm btn-info' href='edit_peserta.php?id=".$row['id']."'>
+                                                                            <span class='ti-pencil' title='Edit'>
+                                                                            </span>Edit
                                                                         </a>
-                                                                        <a class='btn btn-sm btn-danger' href='action.php?delete_seminar_id=".$row['id_seminar']."'>
-                                                                            <span class='ti-trash'>
-                                                                            </span> Hapus
+                                                                        <a class='btn btn-sm btn-danger' href='delete_peserta.php?id=".$row['id']."'>
+                                                                            <span class='ti-trash' title='Edit'>
+                                                                            </span>Hapus
                                                                         </a>
                                                                     </td>
                                                                 </tr>";
                                                             }
-                                                            $data_seminar->close();
+                                                            $data_peserta->close();
                                                         ?>
                                                     </tbody>
-                                                </table>
-                                            </div>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -205,27 +210,9 @@
         <script src="assets/js/lib/bootstrap.min.js"></script>
 
         <!-- bootstrap -->
-
+        
         <script src="assets/js/scripts.js"></script>
         <!-- scripit init-->
-        
-        <script type="text/javascript">
-            $(document).ready( function() {
-                $('#cari').on('keyup', function() {
-                    $.ajax({
-                    type: 'POST',
-                    url: 'search.php',
-                    data: {
-                        search_seminar: $(this).val()
-                    },
-                    cache: false,
-                    success: function(data) {
-                        $('#tampil').html(data);
-                    }
-                    });
-                });
-            });
-        </script>
     </body>
 
 </html>

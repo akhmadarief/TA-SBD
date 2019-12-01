@@ -5,6 +5,12 @@
     if($_SESSION['status']!="login"){
         header("location: ../login.php");
     }
+
+    $stmt = $conn->prepare("SELECT * FROM seminar WHERE id_seminar=?");
+	$stmt->bind_param("i", $_GET['id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -125,58 +131,62 @@
                         <div class="row">
                             <div class="col-lg-12 p-b-25">
                                 <div class="card">
-                                    <div class="bootstrap-data-table-panel">
-                                        <div class="row p-b-10">
-                                            <div class="col-sm-6">
-                                                <label><b>Cari berdasarkan judul atau tempat:</b></label>
-                                                <label><input type="text" id="cari" class="form-control input-sm" placeholder=""></label>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a href="add_seminar.php" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 p-b-20">
+                                                <a href="seminar.php" class="btn btn-sm btn-danger"><span class='ti-angle-left' title='Kembali'></span> Kembali</a>
                                             </div>
                                         </div>
-                                        <div class="table-responsive">
-                                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                                <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table-export_info">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th class="text-center">ID</th>
-                                                            <th class="text-center">Judul Seminar</th>
-                                                            <th class="text-center">Pelaksanaan</th>
-                                                            <th class="text-center">Tempat</th>
-                                                            <th class="text-center">HTM</th>
-                                                            <th class="text-center">Opsi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tampil">
-                                                        <?php
-                                                            $data_seminar = $conn->query("SELECT * FROM seminar");
-                                                            while ($row = $data_seminar->fetch_assoc()) {
-                                                                echo
-                                                                "<tr>
-                                                                    <td class='text-center'>".$row['id_seminar']."</td>
-                                                                    <td>".$row['nama_seminar']."</td>
-                                                                    <td class='text-center'>".$row['waktu']."</td>
-                                                                    <td>".$row['tempat']."</td>
-                                                                    <td class='text-right'>Rp. ".$row['htm']."</td>
-                                                                    <td class='text-center'>
-                                                                        <a class='btn btn-sm btn-info' href='edit_seminar.php?id=".$row['id_seminar']."'>
-                                                                            <span class='ti-pencil'>
-                                                                            </span> Edit
-                                                                        </a>
-                                                                        <a class='btn btn-sm btn-danger' href='action.php?delete_seminar_id=".$row['id_seminar']."'>
-                                                                            <span class='ti-trash'>
-                                                                            </span> Hapus
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>";
-                                                            }
-                                                            $data_seminar->close();
-                                                        ?>
-                                                    </tbody>
-                                                </table>
+                                        <form class="form-horizontal" method="POST" action="action.php?update=seminar">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">ID Seminar</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="<?php echo $row['id_seminar']; ?>" class="form-control" name="id_seminar" readonly>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">Judul Seminar</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="<?php echo $row['nama_seminar']; ?>" class="form-control" name="judul" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">Tanggal Pelaksanaan</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="<?php echo $row['waktu']; ?>" class="form-control" name="waktu" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">Tempat</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="<?php echo $row['tempat']; ?>" class="form-control" name="tempat" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">HTM</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="<?php echo $row['htm']; ?>" class="form-control" name="htm" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-10">
+                                                        <button type="submit" class="btn btn-info">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- /# card -->
@@ -208,24 +218,7 @@
 
         <script src="assets/js/scripts.js"></script>
         <!-- scripit init-->
-        
-        <script type="text/javascript">
-            $(document).ready( function() {
-                $('#cari').on('keyup', function() {
-                    $.ajax({
-                    type: 'POST',
-                    url: 'search.php',
-                    data: {
-                        search_seminar: $(this).val()
-                    },
-                    cache: false,
-                    success: function(data) {
-                        $('#tampil').html(data);
-                    }
-                    });
-                });
-            });
-        </script>
+
     </body>
 
 </html>
