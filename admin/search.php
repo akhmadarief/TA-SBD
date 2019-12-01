@@ -58,4 +58,37 @@
         }
         $data_peserta->close();
     }
+    else if (isset($_POST['search_detailpeserta'])) {
+        $no = 1;
+        $search = "%{$_POST['search_detailpeserta']}%";
+        $detail_peserta = $conn->prepare("SELECT peserta.nama, peserta.id, peserta.jenis_kelamin, peserta.email, peserta.hp, seminar.nama_seminar, peserta.waktu FROM peserta INNER JOIN seminar ON peserta.id_seminar=seminar.id_seminar WHERE nama LIKE ? OR nama_seminar LIKE ? ORDER BY nama");
+        $detail_peserta->bind_param("ss", $search, $search);
+        $detail_peserta->execute();
+	    $result = $detail_peserta->get_result();
+        while ($row = $result->fetch_assoc()) {
+            echo
+            "<tr>
+                <td class='text-center'>".$no++."</td>
+                <td>".$row['nama']."</td>
+                <td>".$row['id']."</td>
+                <td class='text-center'>".$row['jenis_kelamin']."</td>
+                <td>".$row['hp']."</td>
+                <td>".$row['email']."</td>
+                <td>".$row['kota'].", ".$row['provinsi']."</td>
+                <td class='text-center'>".$row['id_seminar']."</td>
+                <td class='text-center'>".$row['waktu']."</td>
+                <td class='text-center'>
+                    <a class='btn btn-sm btn-info' href='edit_peserta.php?id=".$row['id']."'>
+                        <span class='ti-pencil' title='Edit'>
+                        </span>Edit
+                    </a>
+                    <a class='btn btn-sm btn-danger' href='delete_peserta.php?id=".$row['id']."'>
+                        <span class='ti-trash' title='Edit'>
+                        </span>Hapus
+                    </a>
+                </td>
+            </tr>";
+        }
+        $detail_peserta->close();
+    }
 ?>

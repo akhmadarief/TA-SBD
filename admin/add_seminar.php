@@ -1,12 +1,3 @@
-<?php
-    include "../conf.php";
-
-    session_start();
-    if($_SESSION['status']!="login"){
-        header("location: ../login.php");
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,8 +44,7 @@
                         <li class="label">Main</li>
                         <li><a href="../admin"><i class="ti-home"></i> Beranda </a></li>
                         <li><a href="peserta.php"><i class="ti-user"></i> Data Peserta </a></li>
-                        <li><a href="seminar.php"><i class="ti-calendar"></i> Data Seminar </a></li>
-                        <li class="active"><a><i class="ti-id-badge"></i> Detail Peserta </a></li>
+                        <li class="active"><a><i class="ti-calendar"></i> Data Seminar </a></li>
                         <li><a href="logout.php"><i class="ti-close"></i> Logout </a></li>
                     </ul>
                 </div>
@@ -103,7 +93,7 @@
                         <div class="col-lg-8 p-r-0 title-margin-right">
                             <div class="page-header">
                                 <div class="page-title">
-                                    <h1>Tabel berikut merupakan data dari peserta seminar.</h1>
+                                    <h1>Tabel berikut merupakan detail mengenai seminar.</h1>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +103,7 @@
                                 <div class="page-title">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="../admin">Beranda</a></li>
-                                        <li class="breadcrumb-item active">Data Peserta</li>
+                                        <li class="breadcrumb-item active">Data Seminar</li>
                                     </ol>
                                 </div>
                             </div>
@@ -125,62 +115,54 @@
                         <div class="row">
                             <div class="col-lg-12 p-b-25">
                                 <div class="card">
-                                    <div class="bootstrap-data-table-panel">
-                                        <div class="table-responsive">
-                                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                                <div class="dataTables_filter p-b-20">
-                                                    <label>Cari berdasarkan nama:
-                                                        <input type="search" class="form-control input-sm" placeholder="">
-                                                    </label>
-                                                </div>
-                                                <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table-export_info">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th class="text-center">No</th>
-                                                            <th class="text-center">Nama</th>
-                                                            <th class="text-center">No. Identitas</th>
-                                                            <th class="text-center">Jenis Kelamin</th>
-                                                            <th class="text-center">No. HP</th>
-                                                            <th class="text-center">Email</th>
-                                                            <th class="text-center">Alamat</th>
-                                                            <th class="text-center">ID Seminar</th>
-                                                            <th class="text-center">Tanggal Regristrasi</th>
-                                                            <th class="text-center">Opsi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                            $no = 1;
-                                                            $detail_peserta = $conn->query("SELECT peserta.*, regencies.name AS kota, provinces.name AS provinsi FROM peserta INNER JOIN regencies ON regencies.id=peserta.id_kota INNER JOIN provinces ON regencies.province_id=provinces.id ORDER BY nama");
-                                                            while ($row = $detail_peserta->fetch_assoc()) {
-                                                                echo
-                                                                "<tr>
-                                                                    <td class='text-center'>".$no++."</td>
-                                                                    <td>".$row['nama']."</td>
-                                                                    <td>".$row['id']."</td>
-                                                                    <td class='text-center'>".$row['jenis_kelamin']."</td>
-                                                                    <td>".$row['hp']."</td>
-                                                                    <td>".$row['email']."</td>
-                                                                    <td>".$row['kota'].", ".$row['provinsi']."</td>
-                                                                    <td class='text-center'>".$row['id_seminar']."</td>
-                                                                    <td class='text-center'>".$row['waktu']."</td>
-                                                                    <td class='text-center'>
-                                                                        <a class='btn btn-sm btn-info' href='edit_peserta.php?id=".$row['id']."'>
-                                                                            <span class='ti-pencil' title='Edit'>
-                                                                            </span>Edit
-                                                                        </a>
-                                                                        <a class='btn btn-sm btn-danger' href='action.php?delete_peserta_id=".$row['id']."'>
-                                                                            <span class='ti-trash' title='Edit'>
-                                                                            </span>Hapus
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>";
-                                                            }
-                                                            $detail_peserta->close();
-                                                        ?>
-                                                    </tbody>
-                                            </table>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 p-b-20">
+                                                <a href="seminar.php" class="btn btn-sm btn-danger"><span class='ti-angle-left' title='Kembali'></span> Kembali</a>
+                                            </div>
                                         </div>
+                                        <form class="form-horizontal" method="POST" action="insert_seminar.php">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">Judul Seminar</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="judul" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">Tanggal Pelaksanaan</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="waktu" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">Tempat</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="tempat" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label">HTM</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="htm" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-10">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- /# card -->
@@ -209,9 +191,10 @@
         <script src="assets/js/lib/bootstrap.min.js"></script>
 
         <!-- bootstrap -->
-        
+
         <script src="assets/js/scripts.js"></script>
         <!-- scripit init-->
+
     </body>
 
 </html>
