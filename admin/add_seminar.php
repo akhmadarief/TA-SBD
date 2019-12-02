@@ -1,3 +1,12 @@
+<?php
+    include "../conf.php";
+
+    session_start();
+    if($_SESSION['status']!="login"){
+        header("location: login.php?pesan=belum_login");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,6 +54,7 @@
                         <li><a href="../admin"><i class="ti-home"></i> Beranda </a></li>
                         <li><a href="peserta.php"><i class="ti-user"></i> Data Peserta </a></li>
                         <li class="active"><a><i class="ti-calendar"></i> Data Seminar </a></li>
+                        <li><a href="detailpeserta.php"><i class="ti-id-badge"></i> Detail Peserta </a></li>
                         <li><a href="logout.php"><i class="ti-close"></i> Logout </a></li>
                     </ul>
                 </div>

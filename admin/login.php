@@ -1,8 +1,3 @@
-<?php
-    include "../conf.php";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,16 +40,32 @@
                         <div class="login-content">
                             <div class="login-form">
                                 <h4>Administrator Login</h4>
-                                <form action="login_act.php">
+                                <form method="POST" action="check_login.php">
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input type="email" class="form-control" placeholder="Username">
+                                        <input type="text" class="form-control" name="username" placeholder="Username" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" placeholder="Password">
+                                        <input type="password" class="form-control" name="password" placeholder="Password" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-20"><span class='ti-arrow-right' title='Edit'></span> Login</button>
+                                    <div>
+                                        <?php
+                                        if (isset($_GET['pesan'])){
+                                            $pesan = $_GET['pesan'];
+                                            if ($pesan == "belum_login"){
+                                                echo "<div class='alert alert-danger'>Silakan login terlebih dahulu.</div>";
+                                            }
+                                            else if ($pesan == "logout"){
+                                                echo "<div class='alert alert-success'>Berhasil logout dari sistem.</div>";
+                                            }
+                                            else if ($pesan == "gagal"){
+                                                echo "<div class='alert alert-danger'>Username dan Password tidak cocok. Silakan coba kembali.</div>";
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-20"><span class='ti-arrow-right'></span> Login</button>
                                 </form>
                             </div>
                         </div>

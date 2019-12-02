@@ -1,6 +1,11 @@
 <?php
     include "../conf.php";
-    
+
+    session_start();
+    if($_SESSION['status']!="login"){
+        header("location: login.php?pesan=belum_login");
+    }
+
     if (isset($_GET['insert'])){
         if ($_GET['insert'] == "seminar"){
             $stmt = $conn->prepare("INSERT INTO seminar SET nama_seminar=?, waktu=?, tempat=?, htm=?");

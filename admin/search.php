@@ -1,6 +1,11 @@
 <?php
     include "../conf.php";
 
+    session_start();
+    if($_SESSION['status']!="login"){
+        header("location: login.php?pesan=belum_login");
+    }
+
     if (isset($_POST['search_seminar'])) {
         $search = "%{$_POST['search_seminar']}%";
         $data_seminar = $conn->prepare("SELECT * FROM seminar WHERE nama_seminar LIKE ? OR tempat LIKE ?");
