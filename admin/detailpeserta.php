@@ -222,7 +222,7 @@
                 $('#cari').on('keyup', function() {
                     $.ajax({
                     type: 'POST',
-                    url: 'search.php',
+                    url: 'action.php?action=cari',
                     data: {
                         search_detailpeserta: $(this).val()
                     },

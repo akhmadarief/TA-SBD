@@ -204,7 +204,7 @@
                 $('#cari').on('keyup', function() {
                     $.ajax({
                     type: 'POST',
-                    url: 'search.php',
+                    url: 'action.php?action=cari',
                     data: {
                         search_peserta: $(this).val()
                     },
