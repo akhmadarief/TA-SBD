@@ -48,9 +48,9 @@
         <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
             <div class="nano">
                 <div class="nano-content">
-                    <div class="logo"><a href="../admin"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Focus</span></a></div>
+                    <div class="logo"><a href="../admin"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Admin</span></a></div>
                     <ul>
-                        <li class="label">Main</li>
+                        <li class="label">Menu</li>
                         <li><a href="../admin"><i class="ti-home"></i> Beranda </a></li>
                         <li><a href="peserta.php"><i class="ti-user"></i> Data Peserta </a></li>
                         <li class="active"><a><i class="ti-calendar"></i> Data Seminar </a></li>

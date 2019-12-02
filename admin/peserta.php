@@ -49,9 +49,9 @@
         <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
             <div class="nano">
                 <div class="nano-content">
-                    <div class="logo"><a href="../admin"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Focus</span></a></div>
+                    <div class="logo"><a href="../admin"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Admin</span></a></div>
                     <ul>
-                        <li class="label">Main</li>
+                        <li class="label">Menu</li>
                         <li><a href="../admin"><i class="ti-home"></i> Beranda </a></li>
                         <li class="active"><a><i class="ti-user"></i> Data Peserta </a></li>
                         <li><a href="seminar.php"><i class="ti-calendar"></i> Data Seminar </a></li>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="float-right">
                             <ul>
-                                <li class="header-icon dib"><span class="user-avatar">Akhmad Arief <i class="ti-angle-down f-s-10"></i></span>
+                                <li class="header-icon dib"><span class="user-avatar"><?php echo $_SESSION['username']; ?> <i class="ti-angle-down f-s-10"></i></span>
                                     <div class="drop-down dropdown-profile">
                                         <div class="dropdown-content-body">
                                             <ul>
