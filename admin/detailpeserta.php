@@ -113,7 +113,7 @@
                                 <div class="page-title">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="../admin">Beranda</a></li>
-                                        <li class="breadcrumb-item active">Data Peserta</li>
+                                        <li class="breadcrumb-item active">Detail Peserta</li>
                                     </ol>
                                 </div>
                             </div>

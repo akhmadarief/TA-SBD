@@ -144,7 +144,7 @@
                                 <div class="page-title">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="../admin">Beranda</a></li>
-                                        <li class="breadcrumb-item active">Data Seminar</li>
+                                        <li class="breadcrumb-item active">Edit Detail Peserta</li>
                                     </ol>
                                 </div>
                             </div>
