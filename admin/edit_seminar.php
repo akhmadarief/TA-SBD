@@ -109,7 +109,7 @@
                         <div class="col-lg-8 p-r-0 title-margin-right">
                             <div class="page-header">
                                 <div class="page-title">
-                                    <h1>Tabel berikut merupakan detail mengenai seminar.</h1>
+                                <h1>Form berikut merupakan form untuk mengedit data seminar.</h1>
                                 </div>
                             </div>
                         </div>
