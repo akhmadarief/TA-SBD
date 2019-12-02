@@ -219,7 +219,7 @@
                         <div class="col-lg-8 p-r-0 title-margin-right">
                             <div class="page-header">
                                 <div class="page-title">
-                                    <h1>Hello, <span>Welcome Here <?php echo $username; ?></span></h1>
+                                    <h1>Hello, <span>Welcome Here <?php echo $_SESSION['username']; ?></span></h1>
                                 </div>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
 	$row = $result->fetch_row();
 
 	if ($row > 0){
-		$_SESSION['username'] = $username;
+		$_SESSION['username'] = $_POST['username'];
 		$_SESSION['status'] = "login";
 		header("location: ../admin");
 	}else{
