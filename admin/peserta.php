@@ -5,7 +5,6 @@
     if($_SESSION['status']!="login"){
         header("location: login.php?pesan=belum_login");
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Regristrasi Seminar - Data Peserta</title>
+        <title>Halaman Admin - Data Peserta</title>
 
         <!-- ================= Favicon ================== -->
         <!-- Standard -->
@@ -133,7 +132,7 @@
                                                 <label><input type="text" id="cari" class="form-control input-sm" placeholder=""></label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="../" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
+                                                <a href="../" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Peserta Baru</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -146,7 +145,6 @@
                                                             <th class="text-center">No. Identitas</th>
                                                             <th class="text-center">Judul Seminar</th>
                                                             <th class="text-center">Tanggal Regristasi</th>
-                                                            <th class="text-center">Opsi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tampil">
@@ -162,16 +160,6 @@
                                                                     <td>".$row['id']."</td>
                                                                     <td>".$row['nama_seminar']."</td>
                                                                     <td class='text-center'>".$row['waktu']."</td>
-                                                                    <td class='text-center'>
-                                                                        <a class='btn btn-sm btn-info' href='edit_peserta.php?id=".$row['id']."'>
-                                                                            <span class='ti-pencil'>
-                                                                            </span>Edit
-                                                                        </a>
-                                                                        <a class='btn btn-sm btn-danger' href='delete_peserta.php?id=".$row['id']."'>
-                                                                            <span class='ti-trash'>
-                                                                            </span>Hapus
-                                                                        </a>
-                                                                    </td>
                                                                 </tr>";
                                                             }
                                                             $data_peserta->close();

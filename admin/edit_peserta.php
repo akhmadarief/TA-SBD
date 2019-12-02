@@ -27,7 +27,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Regristrasi Seminar - Data Peserta</title>
+        <title>Halaman Admin - Edit Detail Peserta</title>
 
         <!-- ================= Favicon ================== -->
         <!-- Standard -->
@@ -83,9 +83,9 @@
                     <ul>
                         <li class="label">Menu</li>
                         <li><a href="../admin"><i class="ti-home"></i> Beranda </a></li>
-                        <li class="active"><a><i class="ti-user"></i> Data Peserta </a></li>
+                        <li><a href="peserta.php"><i class="ti-user"></i> Data Peserta </a></li>
                         <li><a href="seminar.php"><i class="ti-calendar"></i> Data Seminar </a></li>
-                        <li><a href="detailpeserta.php"><i class="ti-id-badge"></i> Detail Peserta </a></li>
+                        <li class="active"><a><i class="ti-id-badge"></i> Detail Peserta </a></li>
                         <li><a href="logout.php"><i class="ti-close"></i> Logout </a></li>
                     </ul>
                 </div>

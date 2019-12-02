@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Regristrasi Seminar - Data Peserta</title>
+        <title>Halaman Admin - Tambah Data Seminar</title>
 
         <!-- ================= Favicon ================== -->
         <!-- Standard -->
@@ -131,7 +131,7 @@
                                                 <a href="seminar.php" class="btn btn-sm btn-danger"><span class='ti-angle-left' title='Kembali'></span> Kembali</a>
                                             </div>
                                         </div>
-                                        <form class="form-horizontal" method="POST" action="insert_seminar.php">
+                                        <form class="form-horizontal" method="POST" action="action.php?insert=seminar">
                                             <div class="form-group">
                                                 <div class="row">
                                                     <label class="col-sm-2 control-label">Judul Seminar</label>

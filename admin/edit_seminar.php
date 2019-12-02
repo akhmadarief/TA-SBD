@@ -21,7 +21,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Regristrasi Seminar - Data Peserta</title>
+        <title>Halaman Admin - Edit Data Seminar</title>
 
         <!-- ================= Favicon ================== -->
         <!-- Standard -->

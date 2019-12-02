@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Regristrasi Seminar - Data Peserta</title>
+        <title>Halaman Admin - Data Seminar</title>
 
         <!-- ================= Favicon ================== -->
         <!-- Standard -->
@@ -132,7 +132,7 @@
                                                 <label><input type="text" id="cari" class="form-control input-sm" placeholder=""></label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="add_seminar.php" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Data Baru</a>
+                                                <a href="add_seminar.php" class="btn btn-sm btn-success" style="float:right"><span class="ti-plus"></span> Tambah Seminar Baru</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
