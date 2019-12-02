@@ -3,7 +3,7 @@
 	include("../conf.php");
 
 	$admin = $conn->prepare("SELECT * FROM admin WHERE username=? AND password=?");
-	$admin->bind_param("ss", $_POST['username'], md5($_POST['password']));
+	$admin->bind_param("ss", $_POST['username'], sha1($_POST['password']));
 	$admin->execute();
 	$result = $admin->get_result();
 	$row = $result->fetch_row();

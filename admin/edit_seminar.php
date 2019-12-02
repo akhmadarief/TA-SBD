@@ -51,7 +51,7 @@
 
     <body>
 
-        <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" style="height: 937px">
             <div class="nano">
                 <div class="nano-content">
                     <div class="logo"><a href="../admin"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Admin</span></a></div>
